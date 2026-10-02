@@ -74,7 +74,7 @@ int main()
     int value, choice;
     while (1)
     {
-        printf("1. enQueue \n2. deQueue \n3. Display \n4. EXIT");
+        printf("1. enQueue \n2. Display \n3. deQueue \n4. EXIT");
         printf("Enter the value: ");
         scanf("%d", &choice);
         switch (choice)
