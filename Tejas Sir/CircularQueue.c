@@ -5,19 +5,19 @@
 int cq[SIZE], front = -1, rear = -1, i;
 void enQueue(int value)
 {
-    if (rear == SIZE - 1 && front == 0)
+    if (front == -1)
+    {
+        front = 0;
+        rear = 0;
+        cq[rear] = value;
+    }
+    else if (rear == SIZE - 1 && front == 0)
     {
         printf("OVERFLOW");
     }
     else if (rear == front - 1)
     {
         printf("OVERFLOW");
-    }
-    else if (front == -1)
-    {
-        front = 0;
-        rear = 0;
-        cq[rear] = value;
     }
     else if (rear == SIZE - 1 && front != 0)
     {
@@ -36,20 +36,29 @@ void deQueue()
     {
         printf("UNDERFLOW\n");
     }
+    else if (rear == front)
+    {
+        front = -1;
+        rear = -1;
+    }
     else if (front == SIZE - 1)
     {
-        printf(" %d \n", front);
+        printf(" %d \n", cq[front]);
         front = 0;
     }
     else
     {
-        printf(" %d \n", front);
+        printf(" %d \n", cq[front]);
         front++;
     }
 }
 void display()
 {
-    if (front < rear)
+    if (front == -1)
+    {
+        printf("UNDERFLOW");
+    }
+    else if (front <= rear)
     {
         for (i = front; i <= rear; i++)
         {
@@ -75,7 +84,7 @@ int main()
     while (1)
     {
         printf("1. enQueue \n2. Display \n3. deQueue \n4. EXIT");
-        printf("Enter the value: ");
+        printf("Enter the Choice from above: ");
         scanf("%d", &choice);
         switch (choice)
         {
